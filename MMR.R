@@ -4,6 +4,11 @@ library(scales)
 
 mmr <- read.socrata("https://data.cityofnewyork.us/resource/rbed-zzin.csv")
 
+goals_list <- mmr %>% 
+  arrange(desc(valuedate)) %>% 
+  group_by(indicator) %>% 
+  summarize_all(first)
+
 housing_agencies <- mmr %>% 
   filter(agency %in% c("DCP", "HPD", "NYCHA", "DHS")) %>% 
   arrange(id, desc(valuedate))
@@ -45,6 +50,7 @@ plotvar <- function(value) {
 }
 
 housing_goals <- housing_agencies %>% pull(indicator) %>% unique()
+
 
 plotvar("Single adults entering the DHS shelter services system")
 
