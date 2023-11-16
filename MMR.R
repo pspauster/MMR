@@ -51,7 +51,18 @@ plotvar <- function(value) {
 
 housing_goals <- housing_agencies %>% pull(indicator) %>% unique()
 
-
 plotvar("Single adults entering the DHS shelter services system")
 
 walk(housing_goals, plotvar)
+
+DHS_goals <- filter(mmr, agency == "DHS")%>% 
+  arrange(indicator, valuedate) %>% distinct()
+
+DHSlist_goals <- DHS_goals %>% select(indicator, id, critical) %>% distinct
+
+DHS_crit_goals <- filter(mmr, agency == "DHS", critical == "Yes") %>% 
+  arrange(indicator, valuedate) %>% distinct()
+
+critical_goals <- DHS_crit_goals %>% select(indicator, id) %>% unique()
+
+
