@@ -65,4 +65,6 @@ DHS_crit_goals <- filter(mmr, agency == "DHS", critical == "Yes") %>%
 
 critical_goals <- DHS_crit_goals %>% select(indicator, id) %>% unique()
 
+plotvar("Average length of stay for families with children in shelter (days)")
+
 
