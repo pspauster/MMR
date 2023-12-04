@@ -9,6 +9,8 @@ goals_list <- mmr %>%
   group_by(indicator) %>% 
   summarize_all(first)
 
+
+
 housing_agencies <- mmr %>% 
   filter(agency %in% c("DCP", "HPD", "NYCHA", "DHS")) %>% 
   arrange(id, desc(valuedate))
